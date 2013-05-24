@@ -40,7 +40,7 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.linear);
+		setContentView(R.layout.table);
 
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
