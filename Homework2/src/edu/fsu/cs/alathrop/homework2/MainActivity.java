@@ -1,22 +1,35 @@
 package edu.fsu.cs.alathrop.homework2;
 
-import android.app.ActionBar;
-import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.List;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.OnNavigationListener {
+
+	private int GenderVariable = 0;
+	List<String> UsernameArray = new ArrayList<String>();;
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -32,17 +45,186 @@ public class MainActivity extends FragmentActivity implements
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
-		/*actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		/*
+		 * actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		 * 
+		 * // Set up the dropdown list navigation in the action bar.
+		 * actionBar.setListNavigationCallbacks( // Specify a SpinnerAdapter to
+		 * populate the dropdown list. new
+		 * ArrayAdapter<String>(actionBar.getThemedContext(),
+		 * android.R.layout.simple_list_item_1, android.R.id.text1, new String[]
+		 * { getString(R.string.title_section1),
+		 * getString(R.string.title_section2),
+		 * getString(R.string.title_section3), }), this);
+		 */
 
-		// Set up the dropdown list navigation in the action bar.
-		actionBar.setListNavigationCallbacks(
-		// Specify a SpinnerAdapter to populate the dropdown list.
-				new ArrayAdapter<String>(actionBar.getThemedContext(),
-						android.R.layout.simple_list_item_1,
-						android.R.id.text1, new String[] {
-								getString(R.string.title_section1),
-								getString(R.string.title_section2),
-								getString(R.string.title_section3), }), this);*/
+		final Spinner spinner = (Spinner) findViewById(R.id.Country);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				this, R.array.Countries, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		spinner.setAdapter(adapter);
+
+		Button submit = (Button) findViewById(R.id.Submit);
+
+		submit.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				EditText FirstNameVariable = (EditText) findViewById(R.id.FirstName);
+				TextView FirstNameTextView = (TextView) findViewById(R.id.FirstNameTextView);
+				EditText LastNameVariable = (EditText) findViewById(R.id.LastName);
+				TextView LastNameTextView = (TextView) findViewById(R.id.LastNameTextView);
+				EditText PhoneVariable = (EditText) findViewById(R.id.PhoneNumber);
+				TextView PhoneTextView = (TextView) findViewById(R.id.PhoneNumberTextView);
+				EditText EmailVariable = (EditText) findViewById(R.id.Email);
+				TextView EmailTextView = (TextView) findViewById(R.id.EmailTextView);
+				EditText Email2Variable = (EditText) findViewById(R.id.Email2);
+				TextView Email2TextView = (TextView) findViewById(R.id.Email2TextView);
+				EditText UsernameVariable = (EditText) findViewById(R.id.Username);
+				TextView UsernameTextView = (TextView) findViewById(R.id.UsernameTextView);
+				EditText PasswordVariable = (EditText) findViewById(R.id.Password);
+				TextView PasswordTextView = (TextView) findViewById(R.id.PasswordTextView);
+				EditText Password2Variable = (EditText) findViewById(R.id.Password2);
+				TextView Password2TextView = (TextView) findViewById(R.id.Password2TextView);
+				TextView GenderTextView = (TextView) findViewById(R.id.GenderTextView);
+				TextView CountryTextView = (TextView) findViewById(R.id.CountryTextView);
+				RadioGroup RadioSexGroup = (RadioGroup) findViewById(R.id.RadioSex);
+				int SexSelection = RadioSexGroup.getCheckedRadioButtonId();
+				RadioButton RadioSexButton = (RadioButton) findViewById(SexSelection);
+				Spinner s = (Spinner) findViewById(R.id.Country);
+				String CountrySelection = s.getSelectedItem().toString();
+				boolean finished = true;
+
+				if (FirstNameVariable.getText().toString().length() == 0) {
+					FirstNameTextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					FirstNameTextView.setTextColor(Color.BLACK);
+				if (LastNameVariable.getText().toString().length() == 0) {
+					LastNameTextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					LastNameTextView.setTextColor(Color.BLACK);
+				if (PhoneVariable.getText().toString().length() == 0) {
+					PhoneTextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					PhoneTextView.setTextColor(Color.BLACK);
+				if (EmailVariable.getText().toString().length() == 0) {
+					EmailTextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					EmailTextView.setTextColor(Color.BLACK);
+				if (Email2Variable.getText().toString().length() == 0) {
+					Email2TextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					Email2TextView.setTextColor(Color.BLACK);
+				if (UsernameVariable.getText().toString().length() == 0) {
+					UsernameTextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					UsernameTextView.setTextColor(Color.BLACK);
+				if (PasswordVariable.getText().toString().length() == 0) {
+					PasswordTextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					PasswordTextView.setTextColor(Color.BLACK);
+				if (Password2Variable.getText().toString().length() == 0) {
+					Password2TextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					Password2TextView.setTextColor(Color.BLACK);
+				if (SexSelection == -1) {
+					GenderTextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					GenderTextView.setTextColor(Color.BLACK);
+				if (!PasswordVariable.getText().toString()
+						.equals(Password2Variable.getText().toString())) {
+					Password2TextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					Password2TextView.setTextColor(Color.BLACK);
+				if (!EmailVariable.getText().toString()
+						.equals(Email2Variable.getText().toString())) {
+					Email2TextView.setTextColor(Color.RED);
+					finished = false;
+				} else
+					Email2TextView.setTextColor(Color.BLACK);
+
+				if (finished) {
+
+					if (!UsernameArray.isEmpty()
+							&& UsernameArray.contains(UsernameVariable
+									.getText().toString())) {
+						UsernameTextView.setTextColor(Color.RED);
+					} else {
+						UsernameTextView.setTextColor(Color.BLACK);
+						UsernameArray
+								.add(UsernameVariable.getText().toString());
+						Toast.makeText(getApplicationContext(),
+								"Added to the database", Toast.LENGTH_SHORT)
+								.show();
+					}
+				}
+
+			}
+		});
+
+		Button clear = (Button) findViewById(R.id.Clear);
+
+		clear.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				EditText FirstNameVariable = (EditText) findViewById(R.id.FirstName);
+				TextView FirstNameTextView = (TextView) findViewById(R.id.FirstNameTextView);
+				EditText LastNameVariable = (EditText) findViewById(R.id.LastName);
+				TextView LastNameTextView = (TextView) findViewById(R.id.LastNameTextView);
+				EditText PhoneVariable = (EditText) findViewById(R.id.PhoneNumber);
+				TextView PhoneTextView = (TextView) findViewById(R.id.PhoneNumberTextView);
+				EditText EmailVariable = (EditText) findViewById(R.id.Email);
+				TextView EmailTextView = (TextView) findViewById(R.id.EmailTextView);
+				EditText Email2Variable = (EditText) findViewById(R.id.Email2);
+				TextView Email2TextView = (TextView) findViewById(R.id.Email2TextView);
+				EditText UsernameVariable = (EditText) findViewById(R.id.Username);
+				TextView UsernameTextView = (TextView) findViewById(R.id.UsernameTextView);
+				EditText PasswordVariable = (EditText) findViewById(R.id.Password);
+				TextView PasswordTextView = (TextView) findViewById(R.id.PasswordTextView);
+				EditText Password2Variable = (EditText) findViewById(R.id.Password2);
+				TextView Password2TextView = (TextView) findViewById(R.id.Password2TextView);
+				TextView GenderTextView = (TextView) findViewById(R.id.GenderTextView);
+				RadioGroup RadioSexGroup = (RadioGroup) findViewById(R.id.RadioSex);
+				int SexSelection = RadioSexGroup.getCheckedRadioButtonId();
+				RadioButton RadioSexButton = (RadioButton) findViewById(SexSelection);
+				
+				FirstNameVariable.setText("");
+				LastNameVariable.setText("");
+				PhoneVariable.setText("");
+				EmailVariable.setText("");
+				Email2Variable.setText("");
+				UsernameVariable.setText("");
+				PasswordVariable.setText("");
+				Password2Variable.setText("");
+				
+				RadioSexGroup.clearCheck();
+				spinner.setSelection(0);
+				
+				FirstNameTextView.setTextColor(Color.BLACK);
+				LastNameTextView.setTextColor(Color.BLACK);
+				PhoneTextView.setTextColor(Color.BLACK);
+				EmailTextView.setTextColor(Color.BLACK);
+				Email2TextView.setTextColor(Color.BLACK);
+				UsernameTextView.setTextColor(Color.BLACK);
+				PasswordTextView.setTextColor(Color.BLACK);
+				Password2TextView.setTextColor(Color.BLACK);
+				GenderTextView.setTextColor(Color.BLACK);
+				Password2TextView.setTextColor(Color.BLACK);
+				Email2TextView.setTextColor(Color.BLACK);
+
+			}
+		});
+
 	}
 
 	@Override
