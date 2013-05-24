@@ -18,10 +18,10 @@
             android:id="@+id/FirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:capitalize="words"
             android:ems="10"
             android:hint="@string/FirstName"
-            android:inputType="textPersonName"
-            android:capitalize="words" >
+            android:inputType="textPersonName" >
 
             <requestFocus />
         </EditText>
@@ -30,16 +30,16 @@
             android:id="@+id/LastNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/LastName"  />
+            android:text="@string/LastName" />
 
         <EditText
             android:id="@+id/LastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:capitalize="words"
             android:ems="10"
             android:hint="@string/LastName"
-            android:inputType="textPersonName" 
-            android:capitalize="words" />
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/PhoneNumberTextView"
@@ -53,8 +53,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/PhoneNumber"
-            android:inputType="phone" 
-            />
+            android:inputType="phone" />
 
         <TextView
             android:id="@+id/EmailTextView"
@@ -70,12 +69,12 @@
             android:hint="@string/Email"
             android:inputType="textEmailAddress" />
 
-                <TextView
+        <TextView
             android:id="@+id/Email2TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Email2" />
-        
+
         <EditText
             android:id="@+id/Email2"
             android:layout_width="match_parent"
@@ -84,12 +83,12 @@
             android:hint="@string/Email2"
             android:inputType="textEmailAddress" />
 
-                       <TextView
+        <TextView
             android:id="@+id/UsernameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Username" />
-        
+
         <EditText
             android:id="@+id/Username"
             android:layout_width="match_parent"
@@ -97,12 +96,12 @@
             android:ems="10"
             android:hint="@string/Username" />
 
-                       <TextView
+        <TextView
             android:id="@+id/PasswordTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Password" />
-        
+
         <EditText
             android:id="@+id/Password"
             android:layout_width="match_parent"
@@ -111,12 +110,12 @@
             android:hint="@string/Password"
             android:inputType="textPassword" />
 
-                       <TextView
+        <TextView
             android:id="@+id/Password2TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Password2" />
-        
+
         <EditText
             android:id="@+id/Password2"
             android:layout_width="match_parent"
